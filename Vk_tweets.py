@@ -9,10 +9,10 @@ import numpy as np
 from wordcloud import WordCloud, STOPWORDS
 
 
-Inno = Image.open(r"C:\Users\RAGHAVENDRA KUMAR\OneDrive\Pictures\Inno (2).jpeg")
+Inno = Image.open("Inno (2).jpeg")
 st.image(Inno)
 # Correct file paths for images
-vk = Image.open(r"C:\Users\RAGHAVENDRA KUMAR\OneDrive\Pictures\vh_tw2227900.jpeg")
+vk = Image.open("vh_tw2227900.jpeg")
 vk_array = np.array(vk)
 
 # Display the image using matplotlib to avoid the error
@@ -26,13 +26,13 @@ st.pyplot(fig,use_container_width=True)
 st.title("Sentiment Analysis on Virat Kohli Tweets")
 
 # Load the CSV file
-df = pd.read_csv(r"C:\Users\RAGHAVENDRA KUMAR\ML\NLP\VK_final.csv")
+df = pd.read_csv("VK_final.csv")
 
 
 
 # Load the pre-trained model and vectorizer
-model_path = r"C:\Users\RAGHAVENDRA KUMAR\ML\NLP\Tweets.pkl"
-vectorizer_path = r"C:\Users\RAGHAVENDRA KUMAR\ML\NLP\Bagw_vectorization.pkl"
+model_path = "Tweets.pkl"
+vectorizer_path = "Bagw_vectorization.pkl"
 
 with open(model_path, 'rb') as model_file:
     model = pickle.load(model_file)
@@ -47,8 +47,8 @@ comment = st.text_input("Enter your Tweet:")
 if st.button("Submit"):
     data = Bagw.transform([comment]).toarray()
     pred = model.predict(data)[0]
-    pos=Image.open(r"C:\Users\RAGHAVENDRA KUMAR\Downloads\Positive.jpg")
-    neg=Image.open(r"C:\Users\RAGHAVENDRA KUMAR\Downloads\Negative.jpg")
+    pos=Image.open("Positive.jpg")
+    neg=Image.open("Negative.jpg")
     if pred=="Negative":
         st.image(neg)
     elif pred=="Positive":
@@ -65,8 +65,8 @@ negative_tweet = df.loc[df["Opinion"] == "Negative", "Text"]
 negative_words = " ".join(negative_tweet.values)
 
 # Load the images
-image_path1 = r"C:\Users\RAGHAVENDRA KUMAR\Downloads\cr.png"  # Path to first image
-image_path2 = r"C:\Users\RAGHAVENDRA KUMAR\Downloads\Vk_sil.png"  # Path to second image
+image_path1 = "cr.png"  # Path to first image
+image_path2 = "Vk_sil.png"  # Path to second image
 
 meta_mask1 = np.array(Image.open(image_path1))
 image2 = Image.open(image_path2)
@@ -93,7 +93,7 @@ wordcloud2 = WordCloud(
 ).generate(negative_words)
 
 # Load the third image to display
-worldcloud3_image = Image.open(r"C:\Users\RAGHAVENDRA KUMAR\Downloads\Vk_sil.png")
+worldcloud3_image = Image.open("Vk_sil.png")
 worldcloud3_array = np.array(worldcloud3_image)
 
 # Display the word clouds using subplots
